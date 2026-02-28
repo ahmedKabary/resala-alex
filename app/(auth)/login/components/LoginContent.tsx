@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { LoadingImage } from '@/components/LoadingImage'
 import Link from 'next/link'
-import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { GoogleAuthProvider, getRedirectResult, signInWithRedirect } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
 import { useRouter } from 'next/navigation';
 import { Sparkles as SparklesIcon } from 'lucide-react';
@@ -28,33 +28,43 @@ export function LoginContent() {
     return () => unsubscribe();
   }, [router]);
 
+  useEffect(() => {
+    // Handle redirect result from Google sign-in
+    const handleRedirectResult = async () => {
+      try {
+        const result = await getRedirectResult(auth);
+        if (result?.user) {
+          const idToken = await result.user.getIdToken();
+          const res = await fetch('/api/sessionLogin', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ idToken }),
+          });
+          if (!res.ok) {
+            throw new Error('session login failed');
+          }
+          router.push('/form');
+        }
+      } catch (err: any) {
+        if (err?.code && err.code !== 'auth/no-auth-event') {
+          console.error('Error handling redirect sign-in:', err);
+          setError('خطأ في تسجيل الدخول. يرجى المحاولة مرة أخرى.');
+        }
+      }
+    };
+
+    void handleRedirectResult();
+  }, [router]);
+
   const handleGoogleSignIn = async () => {
     setLoading(true);
     setError('');
     try {
       const provider = new GoogleAuthProvider();
-      const result = await signInWithPopup(auth, provider);
-      if (result.user) {
-        const idToken = await result.user.getIdToken()
-        const res = await fetch('/api/sessionLogin', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ idToken }),
-        })
-        if (!res.ok) {
-          throw new Error('session login failed')
-        }
-        router.push('/form');
-      }
+      await signInWithRedirect(auth, provider);
     } catch (error: any) {
       console.error('Error signing in:', error);
-      if (error.code === 'auth/popup-blocked') {
-        setError('تم حظر نافذة تسجيل الدخول. يرجى السماح بالنوافذ المنبثقة.');
-      } else if (error.code === 'auth/popup-closed-by-user') {
-        setError('تم إغلاق نافذة تسجيل الدخول.');
-      } else {
-        setError('خطأ في تسجيل الدخول. يرجى المحاولة مرة أخرى.');
-      }
+      setError('خطأ في تسجيل الدخول. يرجى المحاولة مرة أخرى.');
     } finally {
       setLoading(false);
     }
