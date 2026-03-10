@@ -28,10 +28,10 @@ export function HeroSection() {
           </p>
           
           <div className="flex flex-wrap justify-center gap-4 animate-slide-up delay-200">
-            <Button asChild size="xl" className="rounded-2xl px-8 h-14 text-lg font-bold shadow-lg shadow-sky-200 hover:shadow-xl transition-all bg-white text-sky-700 hover:bg-sky-50">
+            <Button asChild size="lg" className="rounded-2xl px-8 h-14 text-lg font-bold shadow-lg shadow-sky-200 hover:shadow-xl transition-all bg-white text-sky-700 hover:bg-sky-50">
               <Link href="/volunteer">ابدأ التطوع الآن</Link>
             </Button>
-            <Button asChild size="xl" variant="outline" className="rounded-2xl px-8 h-14 text-lg font-bold bg-white/20 backdrop-blur-sm border-white/30 text-white hover:bg-white/30">
+            <Button asChild size="lg" variant="outline" className="rounded-2xl px-8 h-14 text-lg font-bold bg-white/20 backdrop-blur-sm border-white/30 text-white hover:bg-white/30">
               <Link href="/about">اعرف المزيد عنا</Link>
             </Button>
           </div>

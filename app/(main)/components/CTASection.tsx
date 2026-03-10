@@ -15,7 +15,7 @@ export function CTASection() {
               سواء كنت تريد التطوع بوقتك أو بجهدك، كل مساهمة تصنع فرقاً حقيقياً في حياة شخص ما بالإسكندرية.
             </p>
             <div className="flex flex-wrap justify-center gap-4 pt-4">
-              <Button asChild size="xl" className="bg-white text-sky-700 hover:bg-sky-50 rounded-2xl px-10 h-14 text-lg font-bold shadow-xl">
+              <Button asChild size="lg" className="bg-white text-sky-700 hover:bg-sky-50 rounded-2xl px-10 h-14 text-lg font-bold shadow-xl">
                 <Link href="/volunteer">سجل كمتطوع</Link>
               </Button>
             </div>
