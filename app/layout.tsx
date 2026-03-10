@@ -2,7 +2,6 @@ import React from "react"
 import type { Metadata } from 'next'
 import { Cairo } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
-import { AuthProvider } from '@/contexts/AuthContext'
 import './globals.css'
 
 const cairo = Cairo({ 
@@ -11,8 +10,8 @@ const cairo = Cairo({
 });
 
 export const metadata: Metadata = {
-  title: 'تحقيق الأماني - جمعية رسالة',
-  description: 'منصة لتحقيق الأماني والأحلام',
+  title: 'رسالة قوافل خارجي إسكندرية',
+  description: 'منصة قوافل خارجي إسكندرية - تحقيق الأماني، التطوع، والأحداث',
   generator: 'v0.app',
   icons: {
     icon: [
@@ -41,9 +40,7 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl">
       <body className={`${cairo.className} font-sans antialiased`}>
-        <AuthProvider>
-          {children}
-        </AuthProvider>
+        {children}
         <Analytics />
       </body>
     </html>

@@ -45,12 +45,14 @@ const nextConfig = {
     unoptimized: true,
   },
   async headers() {
-    return [
-      {
-        source: '/:path*',
-        headers: securityHeaders,
-      },
-    ]
+    return isProd
+      ? [
+          {
+            source: '/:path*',
+            headers: securityHeaders,
+          },
+        ]
+      : []
   },
 }
 
