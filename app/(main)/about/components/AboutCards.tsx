@@ -7,19 +7,19 @@ export function AboutCards() {
     <div className="mt-10 grid gap-6 md:grid-cols-2">
       <Card className="bg-white/70 border-slate-200/70 shadow-sm">
         <CardHeader>
-          <CardTitle className="text-slate-900">رؤيتنا</CardTitle>
+          <CardTitle className="text-slate-900">هدفنا</CardTitle>
         </CardHeader>
         <CardContent className="text-sm text-slate-600 leading-relaxed">
-          أن نكون الجسر الذي يربط بين فاعلي الخير والمستحقين في كل شبر من إسكندرية، مع التركيز على إدخال السرور من خلال تحقيق الأماني.
+          أن نكون الجسر الذي يربط بين فاعلي الخير والمستحقين، مع التركيز على إدخال السرور اليهم.
         </CardContent>
       </Card>
 
       <Card className="bg-white/70 border-slate-200/70">
         <CardHeader>
-          <CardTitle className="text-slate-900">لمن هذه المبادرة؟</CardTitle>
+          <CardTitle className="text-slate-900">من يمكنه التطوع؟</CardTitle>
         </CardHeader>
         <CardContent className="text-sm text-slate-600 leading-relaxed">
-          لأي شخص يريد مشاركة أمنية أو حلم بشكل واضح.
+          لأي شخص يريد مشاركه في عمل الخير.
         </CardContent>
       </Card>
     </div>
